@@ -1,0 +1,26 @@
+Package: embroidr
+Title: An R package to help with your embroidery projects
+Version: 0.0.0.9000
+Authors@R: 
+    person("Ben", "Vigreux", , "15199546+BenjaminVigreux@users.noreply.github.com", 
+    role = c("aut", "cre"))
+Description: This is an R package with various tools to help you in
+    planning an embroidery project. image_to_pattern() enables you to
+    produce cross-stitch pattern from an image.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+Imports: 
+    dplyr,
+    farver,
+    ggplot2,
+    ggpubr,
+    grid,
+    magrittr,
+    purrr,
+    svglite,
+    tidyr
+Depends: 
+    R (>= 2.10)
+LazyData: true
