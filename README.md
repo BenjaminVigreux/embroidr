@@ -51,19 +51,20 @@ embroidr::create_pattern_from_image(
   cloth_count = 16,      # 16-count cloth
   n_colours = 10          # and which uses a maximum of 10 colours
 )
-#> Saving 17.8 x 6 cm image
 ```
 
 Running this creates and saves 2 (.svg) files, which can then be opened
 in any browser and printed out:
 
-1.  The cross-stitch pattern, with DMC colours specified.
+1.  The cross-stitch pattern, with DMC colours specified. (Note: The
+    image below is not full-size; it has been resized to fit the width
+    of this page.)
 
 ![](README%20images/embroidr_pattern.svg)
 
 2.  A list of all DMC colours needed to produce the pattern.
 
-![](README%20images/embroidr_pattern_colour_list.svg)
+<img src="README images/embroidr_pattern_colour_list.svg" width="100%" />
 
 For a more complete walkthrough of the different options for
 create_pattern_from_image(), see my [blog post introducing

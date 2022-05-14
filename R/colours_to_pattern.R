@@ -86,7 +86,7 @@ colours_to_pattern <- function(mosaic_object, style = c("numbers", "crosses"),
         fill = colour_list$hex[i])
     }
 
-    ggplot2::ggsave(paste0(file_name,"_colour_list.svg"), height = nrow(colour_list)*0.75,
+    ggplot2::ggsave(paste0(file_name,"_colour_list.svg"), height = nrow(colour_list)*1,
                     units = "cm")
 
   }
