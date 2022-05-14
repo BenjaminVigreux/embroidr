@@ -85,3 +85,9 @@ to make tweaks as they please :)
 -   The DMC floss data that comes with {embroidr} was compiled and
     cleaned by Sharla Gelfand in their package
     [{dmc}](https://github.com/sharlagelfand/dmc).
+
+## Note
+
+{embroidr} has not been properly unit-tested. If you come up with any
+bug or issue, please flag it
+[here](https://github.com/BenjaminVigreux/embroidr/issues)!
