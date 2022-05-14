@@ -5,6 +5,7 @@
 #' @param img_size Size of the embroidery, in the unit determined by size_unit. Use a single value (e.g. \code{48}) for a square image.
 #' Use a vector of two values for a rectangular image \code{c(width, height)}. NOTE: This parameter sets the size of the embroidery once
 #' it will is embroidered. The embroidery pattern that will be outputted will be larger.
+#' @param cloth_count Specify the aida cloth count to work with. Set to 16 by default.
 #' @param brightness A value >1 will increase the brightness of the image while a positive value <1 will decrease the brightness.
 #' @param warhol Array of values \code{c(1, 2, 3)} associated with R, G, B colour channels. Swap values in array to swap colour channels for a fun visual effect.
 #' @param method Default 'cie94'. The method to use for colour comparison. Either 'euclidean', 'cie1976', 'cie94', 'cie2000', or 'cmc'.

@@ -11,7 +11,7 @@
 
 #' @export
 colours_to_pattern <- function(mosaic_object, style = c("numbers", "crosses"),
-                          colour_list = TRUE, file_name = "embroidr_pattern") {
+                               colour_list = TRUE, file_name = "embroidr_pattern") {
 
   # work out min and max x and y
   min_x <- min(mosaic_object$Img_dmc$x)
@@ -24,37 +24,41 @@ colours_to_pattern <- function(mosaic_object, style = c("numbers", "crosses"),
   plot_width <- mosaic_object$dims[1]
   plot_height <- mosaic_object$dims[2]
 
-  # visualisation using crosses
-  if(style == "crosses") {
-    mosaic_object$Img_dmc %>%
-      ggplot2::ggplot(mapping = ggplot2::aes(x = x, y = y, colour = hex)) +
-      ggplot2::geom_point(shape = 4, size =5, stroke = 5) +
-      ggplot2::scale_colour_identity() +
-      ggplot2::scale_x_continuous(breaks = seq(min_x - 0.5, max_x + 0.5, 10),
-                                  minor_breaks = (min_x - 0.5):(max_x + 0.5),
-                                  expand = c(0,0), limits = c((min_x - 0.5),(max_x + 0.5))) +
-      ggplot2::scale_y_continuous(breaks = seq(min_y - 0.5, max_y + 0.5, 10),
-                                  minor_breaks = (min_y - 0.5):(max_y + 0.5),
-                                  expand = c(0,0), limits = c((min_y - 0.5),(max_y + 0.5))) +
-      embroidr_theme()
+  suppressWarnings(
+
+    # visualisation using crosses
+    if(style == "crosses") {
+      mosaic_object$Img_dmc %>%
+        ggplot2::ggplot(mapping = ggplot2::aes(x = x, y = y, colour = hex)) +
+        ggplot2::geom_point(shape = 4, size =5, stroke = 5) +
+        ggplot2::scale_colour_identity() +
+        ggplot2::scale_x_continuous(breaks = seq(min_x - 0.5, max_x + 0.5, 10),
+                                    minor_breaks = (min_x - 0.5):(max_x + 0.5),
+                                    expand = c(0,0), limits = c((min_x - 0.5),(max_x + 0.5))) +
+        ggplot2::scale_y_continuous(breaks = seq(min_y - 0.5, max_y + 0.5, 10),
+                                    minor_breaks = (min_y - 0.5):(max_y + 0.5),
+                                    expand = c(0,0), limits = c((min_y - 0.5),(max_y + 0.5))) +
+        embroidr_theme()
 
 
-  } else if (style == "numbers") {
-    mosaic_object$Img_dmc %>%
-      ggplot2::ggplot(mapping = ggplot2::aes(x = x, y = y, fill = hex, label = dmc)) +
-      ggplot2::geom_tile() +
-      ggplot2::geom_text(size = 3) +
-      ggplot2::scale_fill_identity() +
-      ggplot2::scale_x_continuous(breaks = seq(min_x - 0.5, max_x + 0.5, 10),
-                                  minor_breaks = (min_x - 0.5):(max_x + 0.5),
-                                  expand = c(0,0), limits = c((min_x - 0.5),(max_x + 0.5))) +
-      ggplot2::scale_y_continuous(breaks = seq(min_y - 0.5, max_y + 0.5, 10),
-                                  minor_breaks = (min_y - 0.5):(max_y + 0.5),
-                                  expand = c(0,0), limits = c((min_y - 0.5),(max_y + 0.5))) +
-      embroidr_theme()
-  } else {
-    "ERROR: Choose a valid style"
-  }
+    } else if (style == "numbers") {
+      mosaic_object$Img_dmc %>%
+        ggplot2::ggplot(mapping = ggplot2::aes(x = x, y = y, fill = hex, label = dmc)) +
+        ggplot2::geom_tile() +
+        ggplot2::geom_text(size = 3) +
+        ggplot2::scale_fill_identity() +
+        ggplot2::scale_x_continuous(breaks = seq(min_x - 0.5, max_x + 0.5, 10),
+                                    minor_breaks = (min_x - 0.5):(max_x + 0.5),
+                                    expand = c(0,0), limits = c((min_x - 0.5),(max_x + 0.5))) +
+        ggplot2::scale_y_continuous(breaks = seq(min_y - 0.5, max_y + 0.5, 10),
+                                    minor_breaks = (min_y - 0.5):(max_y + 0.5),
+                                    expand = c(0,0), limits = c((min_y - 0.5),(max_y + 0.5))) +
+        embroidr_theme()
+    } else {
+      "ERROR: Choose a valid style"
+    }
+
+  )
 
   # output SVG, where 1 cross is approx. 1 cm^2
 
@@ -62,28 +66,28 @@ colours_to_pattern <- function(mosaic_object, style = c("numbers", "crosses"),
                   units = "cm")
 
   if(colour_list) {
-  # Create and output colour list
+    # Create and output colour list
 
-  colour_list <- mosaic_object$Img_dmc %>%
-    dplyr::group_by(dmc, name, hex) %>%
-    dplyr::summarise(n_stitches = length(name)) %>%
-    dplyr::arrange(desc(n_stitches))
+    colour_list <- mosaic_object$Img_dmc %>%
+      dplyr::group_by(dmc, name, hex) %>%
+      dplyr::summarise(n_stitches = length(name)) %>%
+      dplyr::arrange(desc(n_stitches))
 
-  ggtab <- colour_list %>%
-    dplyr::select(-hex) %>%
-    ggpubr::ggtexttable(rows = NULL,
-                        theme = ggpubr::ttheme("classic"))
+    ggtab <- colour_list %>%
+      dplyr::select(-hex) %>%
+      ggpubr::ggtexttable(rows = NULL,
+                          theme = ggpubr::ttheme("classic"))
 
-  for(i in 1:nrow(colour_list)){
-    row <- i+1
-    column <- which(colnames(colour_list) == "dmc")
-    ggtab <- ggpubr::table_cell_bg(
-      ggtab, row = row, column = column,
-      fill = colour_list$hex[i])
-  }
+    for(i in 1:nrow(colour_list)){
+      row <- i+1
+      column <- which(colnames(colour_list) == "dmc")
+      ggtab <- ggpubr::table_cell_bg(
+        ggtab, row = row, column = column,
+        fill = colour_list$hex[i])
+    }
 
-  ggplot2::ggsave(paste0(file_name,"_colour_list.svg"), height = nrow(colour_list)*0.75,
-                  units = "cm")
+    ggplot2::ggsave(paste0(file_name,"_colour_list.svg"), height = nrow(colour_list)*0.75,
+                    units = "cm")
 
   }
 
