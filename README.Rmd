@@ -39,7 +39,7 @@ To use this function, you'll need to find an image you'd like to turn into a cro
 I first turn this image into a raster array.
 
 ``` {r}
-image_array <- png::readPNG("README Images/R_logo.png")
+image_array <- png::readPNG("README-Images/R_logo.png")
 ```
 
 And then use the create_pattern_from_image() function to turn it into a nice cross-stitch pattern.
@@ -58,12 +58,12 @@ Running this creates and saves 2 (.svg) files, which can then be opened in any b
 
 1. The cross-stitch pattern, with DMC colours specified. (Note: The image below is not full-size; it has been resized to fit the width of this page.)
 
-![](README images/embroidr_pattern.svg)
+![](README-images/embroidr_pattern.svg)
 
 2. A list of all DMC colours needed to produce the pattern.
 
 ```{r, echo=FALSE, out.height=="100%"}
-knitr::include_graphics("README images/embroidr_pattern_colour_list.svg")
+knitr::include_graphics("README-images/embroidr_pattern_colour_list.svg")
 ```
 
 For a more complete walkthrough of the different options for create_pattern_from_image(), see my [blog post introducing {embroidr}](https://rdvark.net/2022/05/14/introducing-embroidr/).

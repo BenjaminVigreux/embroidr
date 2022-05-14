@@ -37,7 +37,7 @@ Foundation](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg
 I first turn this image into a raster array.
 
 ``` r
-image_array <- png::readPNG("README Images/R_logo.png")
+image_array <- png::readPNG("README-Images/R_logo.png")
 ```
 
 And then use the create_pattern_from_image() function to turn it into a
@@ -60,11 +60,11 @@ in any browser and printed out:
     image below is not full-size; it has been resized to fit the width
     of this page.)
 
-![](README%20images/embroidr_pattern.svg)
+![](README-images/embroidr_pattern.svg)
 
 2.  A list of all DMC colours needed to produce the pattern.
 
-<img src="README images/embroidr_pattern_colour_list.svg" width="100%" />
+<img src="README-images/embroidr_pattern_colour_list.svg" width="100%" />
 
 For a more complete walkthrough of the different options for
 create_pattern_from_image(), see my [blog post introducing

@@ -12,6 +12,8 @@
 Use a vector of two values for a rectangular image \code{c(width, height)}. NOTE: This parameter sets the size of the embroidery once
 it will is embroidered. The embroidery pattern that will be outputted will be larger.}
 
+\item{cloth_count}{Specify the aida cloth count to work with. Set to 16 by default.}
+
 \item{brightness}{A value >1 will increase the brightness of the image while a positive value <1 will decrease the brightness.}
 
 \item{warhol}{Array of values \code{c(1, 2, 3)} associated with R, G, B colour channels. Swap values in array to swap colour channels for a fun visual effect.}
